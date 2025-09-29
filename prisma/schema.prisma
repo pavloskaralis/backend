@@ -1,0 +1,125 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  MEMBER
+  COACH
+  ADMIN
+}
+
+model User {
+  id          Int       @id @default(autoincrement())
+  displayName String    @unique @map("display_name")
+  email       String    @unique
+  password    String
+  role        Role
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @default(now()) @map("updated_at")
+
+  refreshToken RefreshToken?
+
+  views        View[]
+  engagements  Engagement[]
+  featureEvents FeatureEvent[]
+  posts        Post[]
+
+  @@map("users")
+}
+
+// Enum example
+enum RoleEnum {
+  USER
+  ADMIN
+  MODERATOR
+}
+
+// 1:1 optional association
+model OneToOneExample {
+  id         Int       @id @default(autoincrement())
+  name       String
+  optionalFK Int?      
+  Related    OneToOneRelated? @relation(fields: [optionalFK], references: [id])
+  createdAt  DateTime  @default(now()) @map("created_at")
+  updatedAt  DateTime  @updatedAt @default(now()) @map("updated_at")
+  @@map("one_to_one_example")
+}
+
+// 1:1 association target
+model OneToOneRelated {
+  id         Int       @id @default(autoincrement())
+  info       String
+  Example    OneToOneExample?
+  createdAt  DateTime  @default(now()) @map("created_at")
+  updatedAt  DateTime  @updatedAt @default(now()) @map("updated_at")
+  @@map("one_to_one_related")
+}
+
+// 1:N association
+model OneToManyExample {
+  id         Int       @id @default(autoincrement())
+  title      String
+  children   OneToManyChild[]
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  @@map("one_to_many_example")
+}
+
+model OneToManyChild {
+  id         Int       @id @default(autoincrement())
+  parentId   Int
+  parent     OneToManyExample @relation(fields: [parentId], references: [id])
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  @@map("one_to_many_child")
+}
+
+// N:N association (implicit)
+model ManyToManyImplicit {
+  id       Int       @id @default(autoincrement())
+  name     String
+  related  ManyToManyImplicit[] @relation("ImplicitRelation")
+  @@map("many_to_many_implicit")
+}
+
+// N:N association (explicit join table)
+model ManyToManyExplicit {
+  id       Int       @id @default(autoincrement())
+  name     String
+  links    ManyToManyLink[]
+  @@map("many_to_many_explicit")
+}
+
+model ManyToManyLink {
+  firstId  Int
+  secondId Int
+  first    ManyToManyExplicit @relation(fields: [firstId], references: [id])
+  second   ManyToManyExplicit @relation(fields: [secondId], references: [id])
+  @@id([firstId, secondId])
+  @@map("many_to_many_link")
+}
+
+// Unique field & combined index
+model UniqueExample {
+  id        Int     @id @default(autoincrement())
+  uniqueStr String  @unique
+  value1    Int
+  value2    Int
+  @@unique([value1, value2])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@map("unique_example")
+}
+
