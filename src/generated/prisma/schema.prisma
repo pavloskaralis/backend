@@ -57,16 +57,17 @@ model Customer {
 }
 
 model Doctor {
-  id        Int        @id @default(autoincrement()) @map("id")
-  user      User       @relation(fields: [userId], references: [id])
-  userId    Int        @unique @map("user_id")
-  bio       String
-  licenses  License[]
-  timeSlots TimeSlot[]
-  bookings  Booking[]  @relation("DoctorBookings")
-  ratings   Rating[]   @relation("DoctorRatings")
-  createdAt DateTime   @default(now()) @map("created_at")
-  updatedAt DateTime   @updatedAt @map("updated_at")
+  id             Int        @id @default(autoincrement()) @map("id")
+  user           User       @relation(fields: [userId], references: [id])
+  userId         Int        @unique @map("user_id")
+  bio            String
+  licenses       License[]
+  timeSlots      TimeSlot[]
+  bookings       Booking[]  @relation("DoctorBookings")
+  ratings        Rating[]   @relation("DoctorRatings")
+  ratingsAverage Float?     @default(0)
+  createdAt      DateTime   @default(now()) @map("created_at")
+  updatedAt      DateTime   @updatedAt @map("updated_at")
 
   @@map("doctors")
 }

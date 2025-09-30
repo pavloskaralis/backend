@@ -6,6 +6,9 @@ const { notify } = require('../services/notificationService');
 const { bookingScope } = require('../policies/bookingPolicy');
 
 // GET /bookings
+// Query params:
+//   - limit (optional, default 20): number of bookings to return
+//   - offset (optional, default 0): pagination offset
 router.get('/', bookingScope, async (req, res) => {
   const limit = parseInt(req.query.limit) || 20;
   const offset = parseInt(req.query.offset) || 0;
@@ -21,62 +24,78 @@ router.get('/', bookingScope, async (req, res) => {
 });
 
 // GET /bookings/:id
+// URL param:
+//   - id: booking ID
 router.get('/:id', bookingScope, async (req, res) => {
-  const booking = await prisma.booking.findUnique({
-    where: { id: parseInt(req.params.id) },
+  const booking = await prisma.booking.findFirst({
+    where: {
+      id: parseInt(req.params.id),
+      ...req.bookingScope,
+    },
     include: { customer: true, doctor: true, timeSlot: true },
   });
 
   if (!booking) return res.status(404).json({ error: 'Booking not found' });
-
-  // Check policy: only allow if belongs to req.bookingScope
-  if (
-    (req.user.customerId && booking.customerId !== req.user.customerId) ||
-    (req.user.doctorId && booking.doctorId !== req.user.doctorId)
-  ) {
-    return res.status(403).json({ error: 'Forbidden' });
-  }
 
   res.json(booking);
 });
 
 // POST /bookings
+// Body payload:
+//   - timeSlotId: ID of the timeslot
+//   - date: string (YYYY-MM-DD) for the booking
+//   - status: booking status (enum or string)
+// Uses customerId from auth middleware (req.user.customerId)
 router.post('/', bookingScope, async (req, res) => {
   const { timeSlotId, date, status } = req.body;
   const customerId = req.user.customerId;
+
+  const timeSlot = await prisma.timeSlot.findUnique({
+    where: { id: timeSlotId },
+  });
+  if (!timeSlot) return res.status(404).json({ error: 'TimeSlot not found' });
+
   const booking = await prisma.booking.create({
-    data: { customerId, timeSlotId, date, status },
+    data: {
+      customerId,
+      doctorId: timeSlot.doctorId,
+      timeSlotId,
+      date,
+      status,
+    },
     include: { customer: true, doctor: true, timeSlot: true },
   });
+
   notify(booking, 'CREATED');
   res.status(201).json(booking);
 });
 
 // PATCH /bookings/:id
+// URL param:
+//   - id: booking ID
+// Body payload:
+//   - status (optional): new booking status
+//   - date (optional): new date string (YYYY-MM-DD)
 router.patch('/:id', bookingScope, async (req, res) => {
   const { status, date } = req.body;
-  const booking = await prisma.booking.findUnique({
-    where: { id: parseInt(req.params.id) },
+
+  const updated = await prisma.booking.updateMany({
+    where: {
+      id: parseInt(req.params.id),
+      ...req.bookingScope,
+    },
+    data: { status, date },
   });
 
-  if (!booking) return res.status(404).json({ error: 'Booking not found' });
+  if (updated.count === 0) return res.status(404).json({ error: 'Booking not found or forbidden' });
 
-  // Policy check
-  if (
-    (req.user.customerId && booking.customerId !== req.user.customerId) ||
-    (req.user.doctorId && booking.doctorId !== req.user.doctorId)
-  ) {
-    return res.status(403).json({ error: 'Forbidden' });
-  }
-
-  const updated = await prisma.booking.update({
+  const booking = await prisma.booking.findUnique({
     where: { id: parseInt(req.params.id) },
-    data: { status, date },
     include: { customer: true, doctor: true, timeSlot: true },
   });
 
-  notify(updated, 'UPDATED');
-  res.json(updated);
+  notify(booking, 'UPDATED');
+  res.json(booking);
 });
 
 module.exports = router;

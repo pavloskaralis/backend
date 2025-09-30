@@ -62,6 +62,7 @@ model Doctor {
   timeSlots TimeSlot[]
   bookings  Booking[]  @relation("DoctorBookings")
   ratings  Rating[]    @relation("DoctorRatings")
+  ratingsAverage Float?  @default(0)
   createdAt DateTime   @default(now()) @map("created_at")
   updatedAt DateTime   @updatedAt @map("updated_at")
   @@map("doctors")

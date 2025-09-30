@@ -153,6 +153,7 @@ exports.Prisma.DoctorScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   bio: 'bio',
+  ratingsAverage: 'ratingsAverage',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

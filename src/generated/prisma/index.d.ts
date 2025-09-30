@@ -4811,17 +4811,20 @@ export namespace Prisma {
   export type DoctorAvgAggregateOutputType = {
     id: number | null
     userId: number | null
+    ratingsAverage: number | null
   }
 
   export type DoctorSumAggregateOutputType = {
     id: number | null
     userId: number | null
+    ratingsAverage: number | null
   }
 
   export type DoctorMinAggregateOutputType = {
     id: number | null
     userId: number | null
     bio: string | null
+    ratingsAverage: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -4830,6 +4833,7 @@ export namespace Prisma {
     id: number | null
     userId: number | null
     bio: string | null
+    ratingsAverage: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -4838,6 +4842,7 @@ export namespace Prisma {
     id: number
     userId: number
     bio: number
+    ratingsAverage: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -4847,17 +4852,20 @@ export namespace Prisma {
   export type DoctorAvgAggregateInputType = {
     id?: true
     userId?: true
+    ratingsAverage?: true
   }
 
   export type DoctorSumAggregateInputType = {
     id?: true
     userId?: true
+    ratingsAverage?: true
   }
 
   export type DoctorMinAggregateInputType = {
     id?: true
     userId?: true
     bio?: true
+    ratingsAverage?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -4866,6 +4874,7 @@ export namespace Prisma {
     id?: true
     userId?: true
     bio?: true
+    ratingsAverage?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -4874,6 +4883,7 @@ export namespace Prisma {
     id?: true
     userId?: true
     bio?: true
+    ratingsAverage?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -4969,6 +4979,7 @@ export namespace Prisma {
     id: number
     userId: number
     bio: string
+    ratingsAverage: number | null
     createdAt: Date
     updatedAt: Date
     _count: DoctorCountAggregateOutputType | null
@@ -4996,6 +5007,7 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     bio?: boolean
+    ratingsAverage?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -5012,11 +5024,12 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     bio?: boolean
+    ratingsAverage?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type DoctorOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "bio" | "createdAt" | "updatedAt", ExtArgs["result"]["doctor"]>
+  export type DoctorOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "bio" | "ratingsAverage" | "createdAt" | "updatedAt", ExtArgs["result"]["doctor"]>
   export type DoctorInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     licenses?: boolean | Doctor$licensesArgs<ExtArgs>
@@ -5039,6 +5052,7 @@ export namespace Prisma {
       id: number
       userId: number
       bio: string
+      ratingsAverage: number | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["doctor"]>
@@ -5418,6 +5432,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Doctor", 'Int'>
     readonly userId: FieldRef<"Doctor", 'Int'>
     readonly bio: FieldRef<"Doctor", 'String'>
+    readonly ratingsAverage: FieldRef<"Doctor", 'Float'>
     readonly createdAt: FieldRef<"Doctor", 'DateTime'>
     readonly updatedAt: FieldRef<"Doctor", 'DateTime'>
   }
@@ -10988,6 +11003,7 @@ export namespace Prisma {
     id: 'id',
     userId: 'userId',
     bio: 'bio',
+    ratingsAverage: 'ratingsAverage',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -11169,6 +11185,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
    * Reference to a field of type 'Boolean'
    */
   export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
@@ -11179,13 +11202,6 @@ export namespace Prisma {
    * Reference to a field of type 'BookingStatus'
    */
   export type EnumBookingStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BookingStatus'>
-    
-
-
-  /**
-   * Reference to a field of type 'Float'
-   */
-  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
     
   /**
    * Deep Input Types
@@ -11409,6 +11425,7 @@ export namespace Prisma {
     id?: IntFilter<"Doctor"> | number
     userId?: IntFilter<"Doctor"> | number
     bio?: StringFilter<"Doctor"> | string
+    ratingsAverage?: FloatNullableFilter<"Doctor"> | number | null
     createdAt?: DateTimeFilter<"Doctor"> | Date | string
     updatedAt?: DateTimeFilter<"Doctor"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -11422,6 +11439,7 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     bio?: SortOrder
+    ratingsAverage?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
@@ -11439,6 +11457,7 @@ export namespace Prisma {
     OR?: DoctorWhereInput[]
     NOT?: DoctorWhereInput | DoctorWhereInput[]
     bio?: StringFilter<"Doctor"> | string
+    ratingsAverage?: FloatNullableFilter<"Doctor"> | number | null
     createdAt?: DateTimeFilter<"Doctor"> | Date | string
     updatedAt?: DateTimeFilter<"Doctor"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -11452,6 +11471,7 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     bio?: SortOrder
+    ratingsAverage?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: DoctorCountOrderByAggregateInput
@@ -11468,6 +11488,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Doctor"> | number
     userId?: IntWithAggregatesFilter<"Doctor"> | number
     bio?: StringWithAggregatesFilter<"Doctor"> | string
+    ratingsAverage?: FloatNullableWithAggregatesFilter<"Doctor"> | number | null
     createdAt?: DateTimeWithAggregatesFilter<"Doctor"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Doctor"> | Date | string
   }
@@ -12050,6 +12071,7 @@ export namespace Prisma {
 
   export type DoctorCreateInput = {
     bio: string
+    ratingsAverage?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutDoctorInput
@@ -12063,6 +12085,7 @@ export namespace Prisma {
     id?: number
     userId: number
     bio: string
+    ratingsAverage?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
     licenses?: LicenseUncheckedCreateNestedManyWithoutDoctorInput
@@ -12073,6 +12096,7 @@ export namespace Prisma {
 
   export type DoctorUpdateInput = {
     bio?: StringFieldUpdateOperationsInput | string
+    ratingsAverage?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutDoctorNestedInput
@@ -12086,6 +12110,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     bio?: StringFieldUpdateOperationsInput | string
+    ratingsAverage?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     licenses?: LicenseUncheckedUpdateManyWithoutDoctorNestedInput
@@ -12098,12 +12123,14 @@ export namespace Prisma {
     id?: number
     userId: number
     bio: string
+    ratingsAverage?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type DoctorUpdateManyMutationInput = {
     bio?: StringFieldUpdateOperationsInput | string
+    ratingsAverage?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -12112,6 +12139,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     bio?: StringFieldUpdateOperationsInput | string
+    ratingsAverage?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -12794,6 +12822,17 @@ export namespace Prisma {
     userId?: SortOrder
   }
 
+  export type FloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
   export type LicenseListRelationFilter = {
     every?: LicenseWhereInput
     some?: LicenseWhereInput
@@ -12824,6 +12863,7 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     bio?: SortOrder
+    ratingsAverage?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -12831,12 +12871,14 @@ export namespace Prisma {
   export type DoctorAvgOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    ratingsAverage?: SortOrder
   }
 
   export type DoctorMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     bio?: SortOrder
+    ratingsAverage?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -12845,6 +12887,7 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     bio?: SortOrder
+    ratingsAverage?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -12852,6 +12895,23 @@ export namespace Prisma {
   export type DoctorSumOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    ratingsAverage?: SortOrder
+  }
+
+  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
   export type BoolFilter<$PrismaModel = never> = {
@@ -13449,6 +13509,14 @@ export namespace Prisma {
     connect?: RatingWhereUniqueInput | RatingWhereUniqueInput[]
   }
 
+  export type NullableFloatFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type UserUpdateOneRequiredWithoutDoctorNestedInput = {
     create?: XOR<UserCreateWithoutDoctorInput, UserUncheckedCreateWithoutDoctorInput>
     connectOrCreate?: UserCreateOrConnectWithoutDoctorInput
@@ -13947,6 +14015,33 @@ export namespace Prisma {
     _max?: NestedEnumStateFilter<$PrismaModel>
   }
 
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
   export type NestedBoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
@@ -13999,6 +14094,7 @@ export namespace Prisma {
 
   export type DoctorCreateWithoutUserInput = {
     bio: string
+    ratingsAverage?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
     licenses?: LicenseCreateNestedManyWithoutDoctorInput
@@ -14010,6 +14106,7 @@ export namespace Prisma {
   export type DoctorUncheckedCreateWithoutUserInput = {
     id?: number
     bio: string
+    ratingsAverage?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
     licenses?: LicenseUncheckedCreateNestedManyWithoutDoctorInput
@@ -14084,6 +14181,7 @@ export namespace Prisma {
 
   export type DoctorUpdateWithoutUserInput = {
     bio?: StringFieldUpdateOperationsInput | string
+    ratingsAverage?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     licenses?: LicenseUpdateManyWithoutDoctorNestedInput
@@ -14095,6 +14193,7 @@ export namespace Prisma {
   export type DoctorUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     bio?: StringFieldUpdateOperationsInput | string
+    ratingsAverage?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     licenses?: LicenseUncheckedUpdateManyWithoutDoctorNestedInput
@@ -14664,6 +14763,7 @@ export namespace Prisma {
 
   export type DoctorCreateWithoutLicensesInput = {
     bio: string
+    ratingsAverage?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutDoctorInput
@@ -14676,6 +14776,7 @@ export namespace Prisma {
     id?: number
     userId: number
     bio: string
+    ratingsAverage?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
     timeSlots?: TimeSlotUncheckedCreateNestedManyWithoutDoctorInput
@@ -14701,6 +14802,7 @@ export namespace Prisma {
 
   export type DoctorUpdateWithoutLicensesInput = {
     bio?: StringFieldUpdateOperationsInput | string
+    ratingsAverage?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutDoctorNestedInput
@@ -14713,6 +14815,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     bio?: StringFieldUpdateOperationsInput | string
+    ratingsAverage?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     timeSlots?: TimeSlotUncheckedUpdateManyWithoutDoctorNestedInput
@@ -14722,6 +14825,7 @@ export namespace Prisma {
 
   export type DoctorCreateWithoutTimeSlotsInput = {
     bio: string
+    ratingsAverage?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutDoctorInput
@@ -14734,6 +14838,7 @@ export namespace Prisma {
     id?: number
     userId: number
     bio: string
+    ratingsAverage?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
     licenses?: LicenseUncheckedCreateNestedManyWithoutDoctorInput
@@ -14790,6 +14895,7 @@ export namespace Prisma {
 
   export type DoctorUpdateWithoutTimeSlotsInput = {
     bio?: StringFieldUpdateOperationsInput | string
+    ratingsAverage?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutDoctorNestedInput
@@ -14802,6 +14908,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     bio?: StringFieldUpdateOperationsInput | string
+    ratingsAverage?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     licenses?: LicenseUncheckedUpdateManyWithoutDoctorNestedInput
@@ -14873,6 +14980,7 @@ export namespace Prisma {
 
   export type DoctorCreateWithoutBookingsInput = {
     bio: string
+    ratingsAverage?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutDoctorInput
@@ -14885,6 +14993,7 @@ export namespace Prisma {
     id?: number
     userId: number
     bio: string
+    ratingsAverage?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
     licenses?: LicenseUncheckedCreateNestedManyWithoutDoctorInput
@@ -14997,6 +15106,7 @@ export namespace Prisma {
 
   export type DoctorUpdateWithoutBookingsInput = {
     bio?: StringFieldUpdateOperationsInput | string
+    ratingsAverage?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutDoctorNestedInput
@@ -15009,6 +15119,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     bio?: StringFieldUpdateOperationsInput | string
+    ratingsAverage?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     licenses?: LicenseUncheckedUpdateManyWithoutDoctorNestedInput
@@ -15106,6 +15217,7 @@ export namespace Prisma {
 
   export type DoctorCreateWithoutRatingsInput = {
     bio: string
+    ratingsAverage?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutDoctorInput
@@ -15118,6 +15230,7 @@ export namespace Prisma {
     id?: number
     userId: number
     bio: string
+    ratingsAverage?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
     licenses?: LicenseUncheckedCreateNestedManyWithoutDoctorInput
@@ -15163,6 +15276,7 @@ export namespace Prisma {
 
   export type DoctorUpdateWithoutRatingsInput = {
     bio?: StringFieldUpdateOperationsInput | string
+    ratingsAverage?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutDoctorNestedInput
@@ -15175,6 +15289,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     bio?: StringFieldUpdateOperationsInput | string
+    ratingsAverage?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     licenses?: LicenseUncheckedUpdateManyWithoutDoctorNestedInput
