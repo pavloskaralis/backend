@@ -7,6 +7,7 @@ const bookingRouter = require("./controllers/bookingController");
 const licenseRouter = require("./controllers/licenseController");
 const userRouter = require("./controllers/userController");
 const doctorRouter = require("./controllers/doctorController");
+const ratingRouter = require("./controllers/ratingController");
 const { authMiddleware } = require("./middlewares/authMiddleware");
 
 const app = express();
@@ -30,6 +31,9 @@ app.use("/users", authMiddleware, userRouter);
 
 // Doctor routes (auth required for full details)
 app.use("/doctors", authMiddleware, doctorRouter);
+
+// Rating routes (auth required)
+app.use("/ratings", authMiddleware, ratingRouter);
 
 app.use(errorMiddleware);
 
