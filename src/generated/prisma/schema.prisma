@@ -90,11 +90,13 @@ model TimeSlot {
   doctorId  Int       @map("doctor_id")
   start     DateTime
   end       DateTime
+  date      String
   recurring Boolean   @default(false)
   bookings  Booking[]
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime  @updatedAt @map("updated_at")
 
+  @@index([doctorId, date])
   @@map("time_slots")
 }
 

@@ -171,6 +171,7 @@ exports.Prisma.TimeSlotScalarFieldEnum = {
   doctorId: 'doctorId',
   start: 'start',
   end: 'end',
+  date: 'date',
   recurring: 'recurring',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -233,6 +234,10 @@ exports.Prisma.AddressOrderByRelevanceFieldEnum = {
 
 exports.Prisma.DoctorOrderByRelevanceFieldEnum = {
   bio: 'bio'
+};
+
+exports.Prisma.TimeSlotOrderByRelevanceFieldEnum = {
+  date: 'date'
 };
 
 exports.Prisma.NotificationOrderByRelevanceFieldEnum = {

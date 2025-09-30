@@ -6882,6 +6882,7 @@ export namespace Prisma {
     doctorId: number | null
     start: Date | null
     end: Date | null
+    date: string | null
     recurring: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -6892,6 +6893,7 @@ export namespace Prisma {
     doctorId: number | null
     start: Date | null
     end: Date | null
+    date: string | null
     recurring: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -6902,6 +6904,7 @@ export namespace Prisma {
     doctorId: number
     start: number
     end: number
+    date: number
     recurring: number
     createdAt: number
     updatedAt: number
@@ -6924,6 +6927,7 @@ export namespace Prisma {
     doctorId?: true
     start?: true
     end?: true
+    date?: true
     recurring?: true
     createdAt?: true
     updatedAt?: true
@@ -6934,6 +6938,7 @@ export namespace Prisma {
     doctorId?: true
     start?: true
     end?: true
+    date?: true
     recurring?: true
     createdAt?: true
     updatedAt?: true
@@ -6944,6 +6949,7 @@ export namespace Prisma {
     doctorId?: true
     start?: true
     end?: true
+    date?: true
     recurring?: true
     createdAt?: true
     updatedAt?: true
@@ -7041,6 +7047,7 @@ export namespace Prisma {
     doctorId: number
     start: Date
     end: Date
+    date: string
     recurring: boolean
     createdAt: Date
     updatedAt: Date
@@ -7070,6 +7077,7 @@ export namespace Prisma {
     doctorId?: boolean
     start?: boolean
     end?: boolean
+    date?: boolean
     recurring?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -7085,12 +7093,13 @@ export namespace Prisma {
     doctorId?: boolean
     start?: boolean
     end?: boolean
+    date?: boolean
     recurring?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type TimeSlotOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "doctorId" | "start" | "end" | "recurring" | "createdAt" | "updatedAt", ExtArgs["result"]["timeSlot"]>
+  export type TimeSlotOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "doctorId" | "start" | "end" | "date" | "recurring" | "createdAt" | "updatedAt", ExtArgs["result"]["timeSlot"]>
   export type TimeSlotInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     doctor?: boolean | DoctorDefaultArgs<ExtArgs>
     bookings?: boolean | TimeSlot$bookingsArgs<ExtArgs>
@@ -7108,6 +7117,7 @@ export namespace Prisma {
       doctorId: number
       start: Date
       end: Date
+      date: string
       recurring: boolean
       createdAt: Date
       updatedAt: Date
@@ -7486,6 +7496,7 @@ export namespace Prisma {
     readonly doctorId: FieldRef<"TimeSlot", 'Int'>
     readonly start: FieldRef<"TimeSlot", 'DateTime'>
     readonly end: FieldRef<"TimeSlot", 'DateTime'>
+    readonly date: FieldRef<"TimeSlot", 'String'>
     readonly recurring: FieldRef<"TimeSlot", 'Boolean'>
     readonly createdAt: FieldRef<"TimeSlot", 'DateTime'>
     readonly updatedAt: FieldRef<"TimeSlot", 'DateTime'>
@@ -11001,6 +11012,7 @@ export namespace Prisma {
     doctorId: 'doctorId',
     start: 'start',
     end: 'end',
+    date: 'date',
     recurring: 'recurring',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -11090,6 +11102,13 @@ export namespace Prisma {
   };
 
   export type DoctorOrderByRelevanceFieldEnum = (typeof DoctorOrderByRelevanceFieldEnum)[keyof typeof DoctorOrderByRelevanceFieldEnum]
+
+
+  export const TimeSlotOrderByRelevanceFieldEnum: {
+    date: 'date'
+  };
+
+  export type TimeSlotOrderByRelevanceFieldEnum = (typeof TimeSlotOrderByRelevanceFieldEnum)[keyof typeof TimeSlotOrderByRelevanceFieldEnum]
 
 
   export const NotificationOrderByRelevanceFieldEnum: {
@@ -11523,6 +11542,7 @@ export namespace Prisma {
     doctorId?: IntFilter<"TimeSlot"> | number
     start?: DateTimeFilter<"TimeSlot"> | Date | string
     end?: DateTimeFilter<"TimeSlot"> | Date | string
+    date?: StringFilter<"TimeSlot"> | string
     recurring?: BoolFilter<"TimeSlot"> | boolean
     createdAt?: DateTimeFilter<"TimeSlot"> | Date | string
     updatedAt?: DateTimeFilter<"TimeSlot"> | Date | string
@@ -11535,11 +11555,13 @@ export namespace Prisma {
     doctorId?: SortOrder
     start?: SortOrder
     end?: SortOrder
+    date?: SortOrder
     recurring?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     doctor?: DoctorOrderByWithRelationInput
     bookings?: BookingOrderByRelationAggregateInput
+    _relevance?: TimeSlotOrderByRelevanceInput
   }
 
   export type TimeSlotWhereUniqueInput = Prisma.AtLeast<{
@@ -11550,6 +11572,7 @@ export namespace Prisma {
     doctorId?: IntFilter<"TimeSlot"> | number
     start?: DateTimeFilter<"TimeSlot"> | Date | string
     end?: DateTimeFilter<"TimeSlot"> | Date | string
+    date?: StringFilter<"TimeSlot"> | string
     recurring?: BoolFilter<"TimeSlot"> | boolean
     createdAt?: DateTimeFilter<"TimeSlot"> | Date | string
     updatedAt?: DateTimeFilter<"TimeSlot"> | Date | string
@@ -11562,6 +11585,7 @@ export namespace Prisma {
     doctorId?: SortOrder
     start?: SortOrder
     end?: SortOrder
+    date?: SortOrder
     recurring?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -11580,6 +11604,7 @@ export namespace Prisma {
     doctorId?: IntWithAggregatesFilter<"TimeSlot"> | number
     start?: DateTimeWithAggregatesFilter<"TimeSlot"> | Date | string
     end?: DateTimeWithAggregatesFilter<"TimeSlot"> | Date | string
+    date?: StringWithAggregatesFilter<"TimeSlot"> | string
     recurring?: BoolWithAggregatesFilter<"TimeSlot"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"TimeSlot"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"TimeSlot"> | Date | string
@@ -12153,6 +12178,7 @@ export namespace Prisma {
   export type TimeSlotCreateInput = {
     start: Date | string
     end: Date | string
+    date: string
     recurring?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12165,6 +12191,7 @@ export namespace Prisma {
     doctorId: number
     start: Date | string
     end: Date | string
+    date: string
     recurring?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12174,6 +12201,7 @@ export namespace Prisma {
   export type TimeSlotUpdateInput = {
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: StringFieldUpdateOperationsInput | string
     recurring?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12186,6 +12214,7 @@ export namespace Prisma {
     doctorId?: IntFieldUpdateOperationsInput | number
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: StringFieldUpdateOperationsInput | string
     recurring?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12197,6 +12226,7 @@ export namespace Prisma {
     doctorId: number
     start: Date | string
     end: Date | string
+    date: string
     recurring?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12205,6 +12235,7 @@ export namespace Prisma {
   export type TimeSlotUpdateManyMutationInput = {
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: StringFieldUpdateOperationsInput | string
     recurring?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12215,6 +12246,7 @@ export namespace Prisma {
     doctorId?: IntFieldUpdateOperationsInput | number
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: StringFieldUpdateOperationsInput | string
     recurring?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12877,11 +12909,18 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type TimeSlotOrderByRelevanceInput = {
+    fields: TimeSlotOrderByRelevanceFieldEnum | TimeSlotOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
   export type TimeSlotCountOrderByAggregateInput = {
     id?: SortOrder
     doctorId?: SortOrder
     start?: SortOrder
     end?: SortOrder
+    date?: SortOrder
     recurring?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -12897,6 +12936,7 @@ export namespace Prisma {
     doctorId?: SortOrder
     start?: SortOrder
     end?: SortOrder
+    date?: SortOrder
     recurring?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -12907,6 +12947,7 @@ export namespace Prisma {
     doctorId?: SortOrder
     start?: SortOrder
     end?: SortOrder
+    date?: SortOrder
     recurring?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -14407,6 +14448,7 @@ export namespace Prisma {
   export type TimeSlotCreateWithoutDoctorInput = {
     start: Date | string
     end: Date | string
+    date: string
     recurring?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -14417,6 +14459,7 @@ export namespace Prisma {
     id?: number
     start: Date | string
     end: Date | string
+    date: string
     recurring?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -14581,6 +14624,7 @@ export namespace Prisma {
     doctorId?: IntFilter<"TimeSlot"> | number
     start?: DateTimeFilter<"TimeSlot"> | Date | string
     end?: DateTimeFilter<"TimeSlot"> | Date | string
+    date?: StringFilter<"TimeSlot"> | string
     recurring?: BoolFilter<"TimeSlot"> | boolean
     createdAt?: DateTimeFilter<"TimeSlot"> | Date | string
     updatedAt?: DateTimeFilter<"TimeSlot"> | Date | string
@@ -14804,6 +14848,7 @@ export namespace Prisma {
   export type TimeSlotCreateWithoutBookingsInput = {
     start: Date | string
     end: Date | string
+    date: string
     recurring?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -14815,6 +14860,7 @@ export namespace Prisma {
     doctorId: number
     start: Date | string
     end: Date | string
+    date: string
     recurring?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -14920,6 +14966,7 @@ export namespace Prisma {
   export type TimeSlotUpdateWithoutBookingsInput = {
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: StringFieldUpdateOperationsInput | string
     recurring?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14931,6 +14978,7 @@ export namespace Prisma {
     doctorId?: IntFieldUpdateOperationsInput | number
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: StringFieldUpdateOperationsInput | string
     recurring?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15248,6 +15296,7 @@ export namespace Prisma {
     id?: number
     start: Date | string
     end: Date | string
+    date: string
     recurring?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -15298,6 +15347,7 @@ export namespace Prisma {
   export type TimeSlotUpdateWithoutDoctorInput = {
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: StringFieldUpdateOperationsInput | string
     recurring?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15308,6 +15358,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: StringFieldUpdateOperationsInput | string
     recurring?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15318,6 +15369,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: DateTimeFieldUpdateOperationsInput | Date | string
+    date?: StringFieldUpdateOperationsInput | string
     recurring?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
