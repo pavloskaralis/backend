@@ -94,70 +94,87 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
-  displayName: 'displayName',
   email: 'email',
   password: 'password',
-  role: 'role',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  phone: 'phone',
+  type: 'type',
+  addressId: 'addressId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.PostScalarFieldEnum = {
+exports.Prisma.AddressScalarFieldEnum = {
   id: 'id',
-  title: 'title',
+  street: 'street',
+  zip: 'zip',
+  state: 'state',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CustomerScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.DoctorScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  bio: 'bio',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.LicenseScalarFieldEnum = {
+  id: 'id',
+  doctorId: 'doctorId',
+  state: 'state',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TimeSlotScalarFieldEnum = {
+  id: 'id',
+  doctorId: 'doctorId',
+  start: 'start',
+  end: 'end',
+  recurring: 'recurring',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.BookingScalarFieldEnum = {
+  id: 'id',
+  customerId: 'customerId',
+  timeSlotId: 'timeSlotId',
+  doctorId: 'doctorId',
+  date: 'date',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.NotificationScalarFieldEnum = {
+  id: 'id',
+  subject: 'subject',
   body: 'body',
-  viewCount: 'viewCount',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  authorId: 'authorId'
-};
-
-exports.Prisma.ViewScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  postId: 'postId',
+  to: 'to',
+  from: 'from',
+  bookingId: 'bookingId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.CategoryScalarFieldEnum = {
+exports.Prisma.RatingScalarFieldEnum = {
   id: 'id',
-  label: 'label',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.EngagementScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  categoryId: 'categoryId',
-  viewCount: 'viewCount',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.PostsCategoriesScalarFieldEnum = {
-  id: 'id',
-  postId: 'postId',
-  categoryId: 'categoryId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.FeatureEventScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  featureKey: 'featureKey',
-  event: 'event',
-  enabled: 'enabled',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.RefreshTokenScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  token: 'token',
+  doctorId: 'doctorId',
+  customerId: 'customerId',
+  score: 'score',
+  comment: 'comment',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -167,44 +184,68 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
 exports.Prisma.UserOrderByRelevanceFieldEnum = {
-  displayName: 'displayName',
   email: 'email',
-  password: 'password'
+  password: 'password',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  phone: 'phone'
 };
 
-exports.Prisma.PostOrderByRelevanceFieldEnum = {
-  title: 'title',
-  body: 'body'
+exports.Prisma.AddressOrderByRelevanceFieldEnum = {
+  street: 'street',
+  zip: 'zip'
 };
 
-exports.Prisma.CategoryOrderByRelevanceFieldEnum = {
-  label: 'label'
+exports.Prisma.DoctorOrderByRelevanceFieldEnum = {
+  bio: 'bio'
 };
 
-exports.Prisma.FeatureEventOrderByRelevanceFieldEnum = {
-  featureKey: 'featureKey',
-  event: 'event'
+exports.Prisma.NotificationOrderByRelevanceFieldEnum = {
+  subject: 'subject',
+  body: 'body',
+  to: 'to',
+  from: 'from'
 };
 
-exports.Prisma.RefreshTokenOrderByRelevanceFieldEnum = {
-  token: 'token'
+exports.Prisma.RatingOrderByRelevanceFieldEnum = {
+  comment: 'comment'
 };
-exports.Role = exports.$Enums.Role = {
-  MEMBER: 'MEMBER',
-  COACH: 'COACH',
-  ADMIN: 'ADMIN'
+exports.UserType = exports.$Enums.UserType = {
+  CUSTOMER: 'CUSTOMER',
+  DOCTOR: 'DOCTOR'
+};
+
+exports.State = exports.$Enums.State = {
+  AL: 'AL',
+  AK: 'AK',
+  AZ: 'AZ',
+  AR: 'AR',
+  CA: 'CA',
+  CO: 'CO'
+};
+
+exports.BookingStatus = exports.$Enums.BookingStatus = {
+  PENDING: 'PENDING',
+  CONFIRMED: 'CONFIRMED',
+  CANCELLED: 'CANCELLED'
 };
 
 exports.Prisma.ModelName = {
   User: 'User',
-  Post: 'Post',
-  View: 'View',
-  Category: 'Category',
-  Engagement: 'Engagement',
-  PostsCategories: 'PostsCategories',
-  FeatureEvent: 'FeatureEvent',
-  RefreshToken: 'RefreshToken'
+  Address: 'Address',
+  Customer: 'Customer',
+  Doctor: 'Doctor',
+  License: 'License',
+  TimeSlot: 'TimeSlot',
+  Booking: 'Booking',
+  Notification: 'Notification',
+  Rating: 'Rating'
 };
 /**
  * Create the Client
@@ -253,13 +294,13 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nenum Role {\n  MEMBER\n  COACH\n  ADMIN\n}\n\nmodel User {\n  id          Int      @id @default(autoincrement())\n  displayName String   @unique @map(\"display_name\")\n  email       String   @unique\n  password    String\n  role        Role\n  createdAt   DateTime @default(now()) @map(\"created_at\")\n  updatedAt   DateTime @default(now()) @updatedAt @map(\"updated_at\")\n\n  refreshToken RefreshToken?\n\n  views         View[]\n  engagements   Engagement[]\n  featureEvents FeatureEvent[]\n  posts         Post[]\n\n  @@map(\"users\")\n}\n\nmodel Post {\n  id        Int      @id @default(autoincrement())\n  title     String\n  body      String\n  viewCount Int      @default(0) @map(\"view_count\")\n  createdAt DateTime @default(now()) @map(\"created_at\")\n  updatedAt DateTime @default(now()) @updatedAt @map(\"updated_at\")\n\n  authorId Int    @map(\"author_id\")\n  author   User   @relation(fields: [authorId], references: [id])\n  views    View[]\n\n  categories PostsCategories[]\n\n  @@map(\"posts\")\n}\n\nmodel View {\n  id        Int      @id @default(autoincrement())\n  userId    Int      @map(\"user_id\")\n  postId    Int      @map(\"post_id\")\n  createdAt DateTime @default(now()) @map(\"created_at\")\n  updatedAt DateTime @default(now()) @updatedAt @map(\"updated_at\")\n\n  user User @relation(fields: [userId], references: [id])\n  post Post @relation(fields: [postId], references: [id])\n\n  @@unique([userId, postId, createdAt])\n  @@map(\"views\")\n}\n\nmodel Category {\n  id        Int      @id @default(autoincrement())\n  label     String   @unique\n  createdAt DateTime @default(now()) @map(\"created_at\")\n  updatedAt DateTime @default(now()) @updatedAt @map(\"updated_at\")\n\n  posts       PostsCategories[]\n  engagements Engagement[]\n\n  @@map(\"categories\")\n}\n\nmodel Engagement {\n  id         Int      @id @default(autoincrement())\n  userId     Int      @map(\"user_id\")\n  categoryId Int      @map(\"category_id\")\n  viewCount  Int      @default(0) @map(\"view_count\")\n  createdAt  DateTime @default(now()) @map(\"created_at\")\n  updatedAt  DateTime @default(now()) @updatedAt @map(\"updated_at\")\n\n  user     User     @relation(fields: [userId], references: [id])\n  category Category @relation(fields: [categoryId], references: [id])\n\n  @@unique([userId, categoryId])\n  @@map(\"engagements\")\n}\n\nmodel PostsCategories {\n  id         Int      @id @default(autoincrement())\n  postId     Int      @map(\"post_id\")\n  categoryId Int      @map(\"category_id\")\n  createdAt  DateTime @default(now()) @map(\"created_at\")\n  updatedAt  DateTime @default(now()) @updatedAt @map(\"updated_at\")\n\n  post     Post     @relation(fields: [postId], references: [id])\n  category Category @relation(fields: [categoryId], references: [id])\n\n  @@unique([postId, categoryId])\n  @@map(\"posts_categories\")\n}\n\nmodel FeatureEvent {\n  id         Int      @id @default(autoincrement())\n  userId     Int      @map(\"user_id\")\n  featureKey String   @map(\"feature_key\")\n  event      String\n  enabled    Boolean\n  createdAt  DateTime @default(now()) @map(\"created_at\")\n  updatedAt  DateTime @default(now()) @updatedAt @map(\"updated_at\")\n\n  user User @relation(fields: [userId], references: [id])\n\n  @@map(\"feature_events\")\n}\n\nmodel RefreshToken {\n  id     Int    @id @default(autoincrement())\n  user   User   @relation(fields: [userId], references: [id])\n  userId Int    @unique\n  token  String @unique\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @default(now()) @updatedAt @map(\"updated_at\")\n\n  @@map(\"refresh_token\")\n}\n",
-  "inlineSchemaHash": "3958f9a007866ba6fc7398a044bd7e429b90db641ab2b87d217acf1bd7ffe582",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id        Int       @id @default(autoincrement()) @map(\"id\")\n  email     String    @unique\n  password  String\n  firstName String    @map(\"first_name\")\n  lastName  String    @map(\"last_name\")\n  phone     String?\n  type      UserType\n  customer  Customer?\n  doctor    Doctor?\n  address   Address   @relation(fields: [addressId], references: [id])\n  addressId Int       @unique @map(\"address_id\")\n  createdAt DateTime  @default(now()) @map(\"created_at\")\n  updatedAt DateTime  @updatedAt @map(\"updated_at\")\n\n  @@map(\"users\")\n}\n\nmodel Address {\n  id        Int      @id @default(autoincrement()) @map(\"id\")\n  street    String\n  zip       String\n  state     State\n  user      User?    @relation\n  createdAt DateTime @default(now()) @map(\"created_at\")\n  updatedAt DateTime @updatedAt @map(\"updated_at\")\n\n  @@map(\"addresses\")\n}\n\nmodel Customer {\n  id        Int       @id @default(autoincrement()) @map(\"id\")\n  user      User      @relation(fields: [userId], references: [id])\n  userId    Int       @unique @map(\"user_id\")\n  bookings  Booking[]\n  ratings   Rating[]  @relation(\"CustomerRatings\")\n  createdAt DateTime  @default(now()) @map(\"created_at\")\n  updatedAt DateTime  @updatedAt @map(\"updated_at\")\n\n  @@map(\"customers\")\n}\n\nmodel Doctor {\n  id        Int        @id @default(autoincrement()) @map(\"id\")\n  user      User       @relation(fields: [userId], references: [id])\n  userId    Int        @unique @map(\"user_id\")\n  bio       String\n  licenses  License[]\n  timeSlots TimeSlot[]\n  bookings  Booking[]  @relation(\"DoctorBookings\")\n  ratings   Rating[]   @relation(\"DoctorRatings\")\n  createdAt DateTime   @default(now()) @map(\"created_at\")\n  updatedAt DateTime   @updatedAt @map(\"updated_at\")\n\n  @@map(\"doctors\")\n}\n\nmodel License {\n  id        Int      @id @default(autoincrement()) @map(\"id\")\n  doctor    Doctor   @relation(fields: [doctorId], references: [id])\n  doctorId  Int      @map(\"doctor_id\")\n  state     State\n  createdAt DateTime @default(now()) @map(\"created_at\")\n  updatedAt DateTime @updatedAt @map(\"updated_at\")\n\n  @@index([state])\n  @@map(\"licenses\")\n}\n\nmodel TimeSlot {\n  id        Int       @id @default(autoincrement()) @map(\"id\")\n  doctor    Doctor    @relation(fields: [doctorId], references: [id])\n  doctorId  Int       @map(\"doctor_id\")\n  start     DateTime\n  end       DateTime\n  recurring Boolean   @default(false)\n  bookings  Booking[]\n  createdAt DateTime  @default(now()) @map(\"created_at\")\n  updatedAt DateTime  @updatedAt @map(\"updated_at\")\n\n  @@map(\"time_slots\")\n}\n\nmodel Booking {\n  id            Int            @id @default(autoincrement()) @map(\"id\")\n  customer      Customer       @relation(fields: [customerId], references: [id])\n  customerId    Int            @map(\"customer_id\")\n  timeSlot      TimeSlot       @relation(fields: [timeSlotId], references: [id])\n  timeSlotId    Int            @map(\"time_slot_id\")\n  doctor        Doctor         @relation(\"DoctorBookings\", fields: [doctorId], references: [id])\n  doctorId      Int            @map(\"doctor_id\")\n  date          DateTime\n  status        BookingStatus\n  notifications Notification[]\n  createdAt     DateTime       @default(now()) @map(\"created_at\")\n  updatedAt     DateTime       @updatedAt @map(\"updated_at\")\n\n  @@unique([timeSlotId, date])\n  @@map(\"bookings\")\n}\n\nmodel Notification {\n  id        Int      @id @default(autoincrement()) @map(\"id\")\n  subject   String\n  body      String\n  to        String\n  from      String\n  booking   Booking  @relation(fields: [bookingId], references: [id])\n  bookingId Int      @map(\"booking_id\")\n  createdAt DateTime @default(now()) @map(\"created_at\")\n  updatedAt DateTime @updatedAt @map(\"updated_at\")\n\n  @@map(\"notifications\")\n}\n\nmodel Rating {\n  id         Int      @id @default(autoincrement()) @map(\"id\")\n  doctor     Doctor   @relation(\"DoctorRatings\", fields: [doctorId], references: [id])\n  doctorId   Int      @map(\"doctor_id\")\n  customer   Customer @relation(\"CustomerRatings\", fields: [customerId], references: [id])\n  customerId Int      @map(\"customer_id\")\n  score      Int\n  comment    String?\n  createdAt  DateTime @default(now()) @map(\"created_at\")\n  updatedAt  DateTime @updatedAt @map(\"updated_at\")\n\n  @@map(\"ratings\")\n}\n\nenum UserType {\n  CUSTOMER\n  DOCTOR\n}\n\nenum State {\n  AL\n  AK\n  AZ\n  AR\n  CA\n  CO\n}\n\nenum BookingStatus {\n  PENDING\n  CONFIRMED\n  CANCELLED\n}\n",
+  "inlineSchemaHash": "806d8ed10cdef5a63d4bc4779cdb0864259d3f254660290a3b510275d669f9c7",
   "copyEngine": true
 }
 config.dirname = '/'
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"displayName\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"display_name\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role\",\"kind\":\"enum\",\"type\":\"Role\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"refreshToken\",\"kind\":\"object\",\"type\":\"RefreshToken\",\"relationName\":\"RefreshTokenToUser\"},{\"name\":\"views\",\"kind\":\"object\",\"type\":\"View\",\"relationName\":\"UserToView\"},{\"name\":\"engagements\",\"kind\":\"object\",\"type\":\"Engagement\",\"relationName\":\"EngagementToUser\"},{\"name\":\"featureEvents\",\"kind\":\"object\",\"type\":\"FeatureEvent\",\"relationName\":\"FeatureEventToUser\"},{\"name\":\"posts\",\"kind\":\"object\",\"type\":\"Post\",\"relationName\":\"PostToUser\"}],\"dbName\":\"users\"},\"Post\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"body\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"viewCount\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"view_count\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"authorId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"author_id\"},{\"name\":\"author\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"PostToUser\"},{\"name\":\"views\",\"kind\":\"object\",\"type\":\"View\",\"relationName\":\"PostToView\"},{\"name\":\"categories\",\"kind\":\"object\",\"type\":\"PostsCategories\",\"relationName\":\"PostToPostsCategories\"}],\"dbName\":\"posts\"},\"View\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"user_id\"},{\"name\":\"postId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"post_id\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"UserToView\"},{\"name\":\"post\",\"kind\":\"object\",\"type\":\"Post\",\"relationName\":\"PostToView\"}],\"dbName\":\"views\"},\"Category\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"label\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"posts\",\"kind\":\"object\",\"type\":\"PostsCategories\",\"relationName\":\"CategoryToPostsCategories\"},{\"name\":\"engagements\",\"kind\":\"object\",\"type\":\"Engagement\",\"relationName\":\"CategoryToEngagement\"}],\"dbName\":\"categories\"},\"Engagement\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"user_id\"},{\"name\":\"categoryId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"category_id\"},{\"name\":\"viewCount\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"view_count\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"EngagementToUser\"},{\"name\":\"category\",\"kind\":\"object\",\"type\":\"Category\",\"relationName\":\"CategoryToEngagement\"}],\"dbName\":\"engagements\"},\"PostsCategories\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"postId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"post_id\"},{\"name\":\"categoryId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"category_id\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"post\",\"kind\":\"object\",\"type\":\"Post\",\"relationName\":\"PostToPostsCategories\"},{\"name\":\"category\",\"kind\":\"object\",\"type\":\"Category\",\"relationName\":\"CategoryToPostsCategories\"}],\"dbName\":\"posts_categories\"},\"FeatureEvent\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"user_id\"},{\"name\":\"featureKey\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"feature_key\"},{\"name\":\"event\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"enabled\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"FeatureEventToUser\"}],\"dbName\":\"feature_events\"},\"RefreshToken\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"RefreshTokenToUser\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"token\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"}],\"dbName\":\"refresh_token\"}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"id\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"firstName\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"first_name\"},{\"name\":\"lastName\",\"kind\":\"scalar\",\"type\":\"String\",\"dbName\":\"last_name\"},{\"name\":\"phone\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"type\",\"kind\":\"enum\",\"type\":\"UserType\"},{\"name\":\"customer\",\"kind\":\"object\",\"type\":\"Customer\",\"relationName\":\"CustomerToUser\"},{\"name\":\"doctor\",\"kind\":\"object\",\"type\":\"Doctor\",\"relationName\":\"DoctorToUser\"},{\"name\":\"address\",\"kind\":\"object\",\"type\":\"Address\",\"relationName\":\"AddressToUser\"},{\"name\":\"addressId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"address_id\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"}],\"dbName\":\"users\"},\"Address\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"id\"},{\"name\":\"street\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"zip\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"state\",\"kind\":\"enum\",\"type\":\"State\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"AddressToUser\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"}],\"dbName\":\"addresses\"},\"Customer\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"id\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"CustomerToUser\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"user_id\"},{\"name\":\"bookings\",\"kind\":\"object\",\"type\":\"Booking\",\"relationName\":\"BookingToCustomer\"},{\"name\":\"ratings\",\"kind\":\"object\",\"type\":\"Rating\",\"relationName\":\"CustomerRatings\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"}],\"dbName\":\"customers\"},\"Doctor\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"id\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"DoctorToUser\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"user_id\"},{\"name\":\"bio\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"licenses\",\"kind\":\"object\",\"type\":\"License\",\"relationName\":\"DoctorToLicense\"},{\"name\":\"timeSlots\",\"kind\":\"object\",\"type\":\"TimeSlot\",\"relationName\":\"DoctorToTimeSlot\"},{\"name\":\"bookings\",\"kind\":\"object\",\"type\":\"Booking\",\"relationName\":\"DoctorBookings\"},{\"name\":\"ratings\",\"kind\":\"object\",\"type\":\"Rating\",\"relationName\":\"DoctorRatings\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"}],\"dbName\":\"doctors\"},\"License\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"id\"},{\"name\":\"doctor\",\"kind\":\"object\",\"type\":\"Doctor\",\"relationName\":\"DoctorToLicense\"},{\"name\":\"doctorId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"doctor_id\"},{\"name\":\"state\",\"kind\":\"enum\",\"type\":\"State\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"}],\"dbName\":\"licenses\"},\"TimeSlot\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"id\"},{\"name\":\"doctor\",\"kind\":\"object\",\"type\":\"Doctor\",\"relationName\":\"DoctorToTimeSlot\"},{\"name\":\"doctorId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"doctor_id\"},{\"name\":\"start\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"end\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"recurring\",\"kind\":\"scalar\",\"type\":\"Boolean\"},{\"name\":\"bookings\",\"kind\":\"object\",\"type\":\"Booking\",\"relationName\":\"BookingToTimeSlot\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"}],\"dbName\":\"time_slots\"},\"Booking\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"id\"},{\"name\":\"customer\",\"kind\":\"object\",\"type\":\"Customer\",\"relationName\":\"BookingToCustomer\"},{\"name\":\"customerId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"customer_id\"},{\"name\":\"timeSlot\",\"kind\":\"object\",\"type\":\"TimeSlot\",\"relationName\":\"BookingToTimeSlot\"},{\"name\":\"timeSlotId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"time_slot_id\"},{\"name\":\"doctor\",\"kind\":\"object\",\"type\":\"Doctor\",\"relationName\":\"DoctorBookings\"},{\"name\":\"doctorId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"doctor_id\"},{\"name\":\"date\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"BookingStatus\"},{\"name\":\"notifications\",\"kind\":\"object\",\"type\":\"Notification\",\"relationName\":\"BookingToNotification\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"}],\"dbName\":\"bookings\"},\"Notification\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"id\"},{\"name\":\"subject\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"body\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"to\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"from\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"booking\",\"kind\":\"object\",\"type\":\"Booking\",\"relationName\":\"BookingToNotification\"},{\"name\":\"bookingId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"booking_id\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"}],\"dbName\":\"notifications\"},\"Rating\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"id\"},{\"name\":\"doctor\",\"kind\":\"object\",\"type\":\"Doctor\",\"relationName\":\"DoctorRatings\"},{\"name\":\"doctorId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"doctor_id\"},{\"name\":\"customer\",\"kind\":\"object\",\"type\":\"Customer\",\"relationName\":\"CustomerRatings\"},{\"name\":\"customerId\",\"kind\":\"scalar\",\"type\":\"Int\",\"dbName\":\"customer_id\"},{\"name\":\"score\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"comment\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"created_at\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\",\"dbName\":\"updated_at\"}],\"dbName\":\"ratings\"}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = {
   getRuntime: async () => require('./query_engine_bg.js'),

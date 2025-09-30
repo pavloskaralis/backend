@@ -14,29 +14,144 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Role {
-  MEMBER
-  COACH
-  ADMIN
+model User {
+  id         Int       @id @default(autoincrement()) @map("id")
+  email      String    @unique 
+  password   String    
+  firstName  String    @map("first_name")
+  lastName   String    @map("last_name")
+  phone String?        
+  type       UserType  
+  customer   Customer?
+  doctor     Doctor?
+  address    Address   @relation(fields: [addressId], references: [id])
+  addressId  Int       @unique @map("address_id")
+  createdAt  DateTime  @default(now()) @map("created_at")
+  updatedAt  DateTime  @updatedAt @map("updated_at")
+  @@map("users")
 }
 
-model User {
-  id          Int       @id @default(autoincrement())
-  displayName String    @unique @map("display_name")
-  email       String    @unique
-  password    String
-  role        Role
+model Address {
+  id        Int     @id @default(autoincrement()) @map("id")
+  street    String  
+  zip       String  
+  state     State   
+  user      User?   @relation
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  @@map("addresses")
+}
+
+model Customer {
+  id        Int       @id @default(autoincrement()) @map("id")
+  user      User      @relation(fields: [userId], references: [id])
+  userId    Int       @unique @map("user_id")
+  bookings  Booking[]
+  ratings  Rating[]   @relation("CustomerRatings")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  @@map("customers")
+}
+
+model Doctor {
+  id        Int        @id @default(autoincrement()) @map("id")
+  user      User       @relation(fields: [userId], references: [id])
+  userId    Int        @unique @map("user_id")
+  bio      String
+  licenses  License[]
+  timeSlots TimeSlot[]
+  bookings  Booking[]  @relation("DoctorBookings")
+  ratings  Rating[]    @relation("DoctorRatings")
+  createdAt DateTime   @default(now()) @map("created_at")
+  updatedAt DateTime   @updatedAt @map("updated_at")
+  @@map("doctors")
+}
+
+model License {
+  id        Int     @id @default(autoincrement()) @map("id")
+  doctor    Doctor  @relation(fields: [doctorId], references: [id])
+  doctorId  Int     @map("doctor_id")
+  state     State   
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  @@index([state])
+  @@map("licenses")
+}
+
+model TimeSlot {
+  id         Int       @id @default(autoincrement()) @map("id")
+  doctor     Doctor    @relation(fields: [doctorId], references: [id])
+  doctorId   Int       @map("doctor_id")
+  start      DateTime 
+  end        DateTime  
+  recurring  Boolean   @default(false) 
+  bookings   Booking[]
+  createdAt  DateTime  @default(now()) @map("created_at")
+  updatedAt  DateTime  @updatedAt @map("updated_at")
+  @@map("time_slots")
+}
+
+model Booking {
+  id          Int          @id @default(autoincrement()) @map("id")
+  customer    Customer     @relation(fields: [customerId], references: [id])
+  customerId  Int          @map("customer_id")
+  timeSlot    TimeSlot     @relation(fields: [timeSlotId], references: [id])
+  timeSlotId  Int          @map("time_slot_id")
+  doctor      Doctor       @relation("DoctorBookings", fields: [doctorId], references: [id])
+  doctorId    Int          @map("doctor_id")
+  date        DateTime     
+  status      BookingStatus 
+  notifications Notification[]
+  createdAt   DateTime     @default(now()) @map("created_at")
+  updatedAt   DateTime     @updatedAt @map("updated_at")
+  @@unique([timeSlotId, date])
+  @@map("bookings")
+}
+
+model Notification {
+  id        Int      @id @default(autoincrement()) @map("id")
+  subject   String   
+  body      String   
+  to        String   
+  from      String  
+  booking   Booking  @relation(fields: [bookingId], references: [id])
+  bookingId Int      @map("booking_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  @@map("notifications")
+}
+
+model Rating {
+  id          Int       @id @default(autoincrement()) @map("id")
+  doctor      Doctor    @relation("DoctorRatings", fields: [doctorId], references: [id])
+  doctorId    Int       @map("doctor_id")
+  customer    Customer  @relation("CustomerRatings", fields: [customerId], references: [id])
+  customerId  Int       @map("customer_id")
+  score       Int      
+  comment     String?  
   createdAt   DateTime  @default(now()) @map("created_at")
-  updatedAt   DateTime  @updatedAt @default(now()) @map("updated_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+  @@map("ratings")
+}
 
-  refreshToken RefreshToken?
+enum UserType {
+  CUSTOMER
+  DOCTOR
+}
 
-  views        View[]
-  engagements  Engagement[]
-  featureEvents FeatureEvent[]
-  posts        Post[]
+enum State {
+  AL
+  AK
+  AZ
+  AR
+  CA
+  CO
+}
 
-  @@map("users")
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
 }
 
 

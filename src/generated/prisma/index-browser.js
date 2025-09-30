@@ -122,70 +122,87 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
-  displayName: 'displayName',
   email: 'email',
   password: 'password',
-  role: 'role',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  phone: 'phone',
+  type: 'type',
+  addressId: 'addressId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.PostScalarFieldEnum = {
+exports.Prisma.AddressScalarFieldEnum = {
   id: 'id',
-  title: 'title',
+  street: 'street',
+  zip: 'zip',
+  state: 'state',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CustomerScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.DoctorScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  bio: 'bio',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.LicenseScalarFieldEnum = {
+  id: 'id',
+  doctorId: 'doctorId',
+  state: 'state',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TimeSlotScalarFieldEnum = {
+  id: 'id',
+  doctorId: 'doctorId',
+  start: 'start',
+  end: 'end',
+  recurring: 'recurring',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.BookingScalarFieldEnum = {
+  id: 'id',
+  customerId: 'customerId',
+  timeSlotId: 'timeSlotId',
+  doctorId: 'doctorId',
+  date: 'date',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.NotificationScalarFieldEnum = {
+  id: 'id',
+  subject: 'subject',
   body: 'body',
-  viewCount: 'viewCount',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  authorId: 'authorId'
-};
-
-exports.Prisma.ViewScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  postId: 'postId',
+  to: 'to',
+  from: 'from',
+  bookingId: 'bookingId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.CategoryScalarFieldEnum = {
+exports.Prisma.RatingScalarFieldEnum = {
   id: 'id',
-  label: 'label',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.EngagementScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  categoryId: 'categoryId',
-  viewCount: 'viewCount',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.PostsCategoriesScalarFieldEnum = {
-  id: 'id',
-  postId: 'postId',
-  categoryId: 'categoryId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.FeatureEventScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  featureKey: 'featureKey',
-  event: 'event',
-  enabled: 'enabled',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.RefreshTokenScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  token: 'token',
+  doctorId: 'doctorId',
+  customerId: 'customerId',
+  score: 'score',
+  comment: 'comment',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -195,44 +212,68 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
 exports.Prisma.UserOrderByRelevanceFieldEnum = {
-  displayName: 'displayName',
   email: 'email',
-  password: 'password'
+  password: 'password',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  phone: 'phone'
 };
 
-exports.Prisma.PostOrderByRelevanceFieldEnum = {
-  title: 'title',
-  body: 'body'
+exports.Prisma.AddressOrderByRelevanceFieldEnum = {
+  street: 'street',
+  zip: 'zip'
 };
 
-exports.Prisma.CategoryOrderByRelevanceFieldEnum = {
-  label: 'label'
+exports.Prisma.DoctorOrderByRelevanceFieldEnum = {
+  bio: 'bio'
 };
 
-exports.Prisma.FeatureEventOrderByRelevanceFieldEnum = {
-  featureKey: 'featureKey',
-  event: 'event'
+exports.Prisma.NotificationOrderByRelevanceFieldEnum = {
+  subject: 'subject',
+  body: 'body',
+  to: 'to',
+  from: 'from'
 };
 
-exports.Prisma.RefreshTokenOrderByRelevanceFieldEnum = {
-  token: 'token'
+exports.Prisma.RatingOrderByRelevanceFieldEnum = {
+  comment: 'comment'
 };
-exports.Role = exports.$Enums.Role = {
-  MEMBER: 'MEMBER',
-  COACH: 'COACH',
-  ADMIN: 'ADMIN'
+exports.UserType = exports.$Enums.UserType = {
+  CUSTOMER: 'CUSTOMER',
+  DOCTOR: 'DOCTOR'
+};
+
+exports.State = exports.$Enums.State = {
+  AL: 'AL',
+  AK: 'AK',
+  AZ: 'AZ',
+  AR: 'AR',
+  CA: 'CA',
+  CO: 'CO'
+};
+
+exports.BookingStatus = exports.$Enums.BookingStatus = {
+  PENDING: 'PENDING',
+  CONFIRMED: 'CONFIRMED',
+  CANCELLED: 'CANCELLED'
 };
 
 exports.Prisma.ModelName = {
   User: 'User',
-  Post: 'Post',
-  View: 'View',
-  Category: 'Category',
-  Engagement: 'Engagement',
-  PostsCategories: 'PostsCategories',
-  FeatureEvent: 'FeatureEvent',
-  RefreshToken: 'RefreshToken'
+  Address: 'Address',
+  Customer: 'Customer',
+  Doctor: 'Doctor',
+  License: 'License',
+  TimeSlot: 'TimeSlot',
+  Booking: 'Booking',
+  Notification: 'Notification',
+  Rating: 'Rating'
 };
 
 /**
