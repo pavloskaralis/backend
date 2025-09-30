@@ -76,10 +76,11 @@ model License {
   doctor    Doctor   @relation(fields: [doctorId], references: [id])
   doctorId  Int      @map("doctor_id")
   state     State
+  active    Boolean  @default(true)
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  @@index([state])
+  @@index([state, active])
   @@map("licenses")
 }
 

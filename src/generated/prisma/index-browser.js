@@ -161,6 +161,7 @@ exports.Prisma.LicenseScalarFieldEnum = {
   id: 'id',
   doctorId: 'doctorId',
   state: 'state',
+  active: 'active',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

@@ -5903,6 +5903,7 @@ export namespace Prisma {
     id: number | null
     doctorId: number | null
     state: $Enums.State | null
+    active: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -5911,6 +5912,7 @@ export namespace Prisma {
     id: number | null
     doctorId: number | null
     state: $Enums.State | null
+    active: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -5919,6 +5921,7 @@ export namespace Prisma {
     id: number
     doctorId: number
     state: number
+    active: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -5939,6 +5942,7 @@ export namespace Prisma {
     id?: true
     doctorId?: true
     state?: true
+    active?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -5947,6 +5951,7 @@ export namespace Prisma {
     id?: true
     doctorId?: true
     state?: true
+    active?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -5955,6 +5960,7 @@ export namespace Prisma {
     id?: true
     doctorId?: true
     state?: true
+    active?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -6050,6 +6056,7 @@ export namespace Prisma {
     id: number
     doctorId: number
     state: $Enums.State
+    active: boolean
     createdAt: Date
     updatedAt: Date
     _count: LicenseCountAggregateOutputType | null
@@ -6077,6 +6084,7 @@ export namespace Prisma {
     id?: boolean
     doctorId?: boolean
     state?: boolean
+    active?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     doctor?: boolean | DoctorDefaultArgs<ExtArgs>
@@ -6088,11 +6096,12 @@ export namespace Prisma {
     id?: boolean
     doctorId?: boolean
     state?: boolean
+    active?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type LicenseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "doctorId" | "state" | "createdAt" | "updatedAt", ExtArgs["result"]["license"]>
+  export type LicenseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "doctorId" | "state" | "active" | "createdAt" | "updatedAt", ExtArgs["result"]["license"]>
   export type LicenseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     doctor?: boolean | DoctorDefaultArgs<ExtArgs>
   }
@@ -6106,6 +6115,7 @@ export namespace Prisma {
       id: number
       doctorId: number
       state: $Enums.State
+      active: boolean
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["license"]>
@@ -6481,6 +6491,7 @@ export namespace Prisma {
     readonly id: FieldRef<"License", 'Int'>
     readonly doctorId: FieldRef<"License", 'Int'>
     readonly state: FieldRef<"License", 'State'>
+    readonly active: FieldRef<"License", 'Boolean'>
     readonly createdAt: FieldRef<"License", 'DateTime'>
     readonly updatedAt: FieldRef<"License", 'DateTime'>
   }
@@ -10977,6 +10988,7 @@ export namespace Prisma {
     id: 'id',
     doctorId: 'doctorId',
     state: 'state',
+    active: 'active',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -11448,6 +11460,7 @@ export namespace Prisma {
     id?: IntFilter<"License"> | number
     doctorId?: IntFilter<"License"> | number
     state?: EnumStateFilter<"License"> | $Enums.State
+    active?: BoolFilter<"License"> | boolean
     createdAt?: DateTimeFilter<"License"> | Date | string
     updatedAt?: DateTimeFilter<"License"> | Date | string
     doctor?: XOR<DoctorScalarRelationFilter, DoctorWhereInput>
@@ -11457,6 +11470,7 @@ export namespace Prisma {
     id?: SortOrder
     doctorId?: SortOrder
     state?: SortOrder
+    active?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     doctor?: DoctorOrderByWithRelationInput
@@ -11469,6 +11483,7 @@ export namespace Prisma {
     NOT?: LicenseWhereInput | LicenseWhereInput[]
     doctorId?: IntFilter<"License"> | number
     state?: EnumStateFilter<"License"> | $Enums.State
+    active?: BoolFilter<"License"> | boolean
     createdAt?: DateTimeFilter<"License"> | Date | string
     updatedAt?: DateTimeFilter<"License"> | Date | string
     doctor?: XOR<DoctorScalarRelationFilter, DoctorWhereInput>
@@ -11478,6 +11493,7 @@ export namespace Prisma {
     id?: SortOrder
     doctorId?: SortOrder
     state?: SortOrder
+    active?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: LicenseCountOrderByAggregateInput
@@ -11494,6 +11510,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"License"> | number
     doctorId?: IntWithAggregatesFilter<"License"> | number
     state?: EnumStateWithAggregatesFilter<"License"> | $Enums.State
+    active?: BoolWithAggregatesFilter<"License"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"License"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"License"> | Date | string
   }
@@ -12076,6 +12093,7 @@ export namespace Prisma {
 
   export type LicenseCreateInput = {
     state: $Enums.State
+    active?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     doctor: DoctorCreateNestedOneWithoutLicensesInput
@@ -12085,12 +12103,14 @@ export namespace Prisma {
     id?: number
     doctorId: number
     state: $Enums.State
+    active?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type LicenseUpdateInput = {
     state?: EnumStateFieldUpdateOperationsInput | $Enums.State
+    active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     doctor?: DoctorUpdateOneRequiredWithoutLicensesNestedInput
@@ -12100,6 +12120,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     doctorId?: IntFieldUpdateOperationsInput | number
     state?: EnumStateFieldUpdateOperationsInput | $Enums.State
+    active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -12108,12 +12129,14 @@ export namespace Prisma {
     id?: number
     doctorId: number
     state: $Enums.State
+    active?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type LicenseUpdateManyMutationInput = {
     state?: EnumStateFieldUpdateOperationsInput | $Enums.State
+    active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -12122,6 +12145,7 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     doctorId?: IntFieldUpdateOperationsInput | number
     state?: EnumStateFieldUpdateOperationsInput | $Enums.State
+    active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -12798,6 +12822,11 @@ export namespace Prisma {
     userId?: SortOrder
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type DoctorScalarRelationFilter = {
     is?: DoctorWhereInput
     isNot?: DoctorWhereInput
@@ -12807,6 +12836,7 @@ export namespace Prisma {
     id?: SortOrder
     doctorId?: SortOrder
     state?: SortOrder
+    active?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -12820,6 +12850,7 @@ export namespace Prisma {
     id?: SortOrder
     doctorId?: SortOrder
     state?: SortOrder
+    active?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -12828,6 +12859,7 @@ export namespace Prisma {
     id?: SortOrder
     doctorId?: SortOrder
     state?: SortOrder
+    active?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -12837,9 +12869,12 @@ export namespace Prisma {
     doctorId?: SortOrder
   }
 
-  export type BoolFilter<$PrismaModel = never> = {
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type TimeSlotCountOrderByAggregateInput = {
@@ -12880,14 +12915,6 @@ export namespace Prisma {
   export type TimeSlotSumOrderByAggregateInput = {
     id?: SortOrder
     doctorId?: SortOrder
-  }
-
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type EnumBookingStatusFilter<$PrismaModel = never> = {
@@ -13507,6 +13534,10 @@ export namespace Prisma {
     connect?: DoctorWhereUniqueInput
   }
 
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
   export type DoctorUpdateOneRequiredWithoutLicensesNestedInput = {
     create?: XOR<DoctorCreateWithoutLicensesInput, DoctorUncheckedCreateWithoutLicensesInput>
     connectOrCreate?: DoctorCreateOrConnectWithoutLicensesInput
@@ -13533,10 +13564,6 @@ export namespace Prisma {
     connectOrCreate?: BookingCreateOrConnectWithoutTimeSlotInput | BookingCreateOrConnectWithoutTimeSlotInput[]
     createMany?: BookingCreateManyTimeSlotInputEnvelope
     connect?: BookingWhereUniqueInput | BookingWhereUniqueInput[]
-  }
-
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
   }
 
   export type DoctorUpdateOneRequiredWithoutTimeSlotsNestedInput = {
@@ -14354,6 +14381,7 @@ export namespace Prisma {
 
   export type LicenseCreateWithoutDoctorInput = {
     state: $Enums.State
+    active?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -14361,6 +14389,7 @@ export namespace Prisma {
   export type LicenseUncheckedCreateWithoutDoctorInput = {
     id?: number
     state: $Enums.State
+    active?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -14523,6 +14552,7 @@ export namespace Prisma {
     id?: IntFilter<"License"> | number
     doctorId?: IntFilter<"License"> | number
     state?: EnumStateFilter<"License"> | $Enums.State
+    active?: BoolFilter<"License"> | boolean
     createdAt?: DateTimeFilter<"License"> | Date | string
     updatedAt?: DateTimeFilter<"License"> | Date | string
   }
@@ -15209,6 +15239,7 @@ export namespace Prisma {
   export type LicenseCreateManyDoctorInput = {
     id?: number
     state: $Enums.State
+    active?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -15243,6 +15274,7 @@ export namespace Prisma {
 
   export type LicenseUpdateWithoutDoctorInput = {
     state?: EnumStateFieldUpdateOperationsInput | $Enums.State
+    active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -15250,6 +15282,7 @@ export namespace Prisma {
   export type LicenseUncheckedUpdateWithoutDoctorInput = {
     id?: IntFieldUpdateOperationsInput | number
     state?: EnumStateFieldUpdateOperationsInput | $Enums.State
+    active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -15257,6 +15290,7 @@ export namespace Prisma {
   export type LicenseUncheckedUpdateManyWithoutDoctorInput = {
     id?: IntFieldUpdateOperationsInput | number
     state?: EnumStateFieldUpdateOperationsInput | $Enums.State
+    active?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

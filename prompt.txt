@@ -1,0 +1,129 @@
+The Problem 
+Here at Found we have a set of doctors who work with all of our customers. Medical licensing laws only allow those doctors to see patients in the states which they are licensed to operate (i.e. only in California if they only have a California medical license). When a new patient is onboarded we need to schedule a time for them to meet virtually with an available clinician at a mutually acceptable timeframe. 
+We would like you to design a system to solve this scheduling problem. You are free to use any frameworks or type of API you’d like, but keep in mind that today Found’s systems are REST APIs built on Node.js and Postgres. If using other technologies for a reason other than simply being more familiar with them (which is perfectly fine) please be prepared to tell us why you chose them and what they bring to the table that our current stack does not. 
+These are the requirements the product team has given for this system:
+1. We must be able to schedule times for a doctor to be available.
+2. We must be able to retrieve a list of available time slots which a user can choose from and then schedule a chosen time slot. The list must take into account where the user lives and the list of states the doctor is allowed to practice in. The scheduling must ensure that only one user is able to schedule any given appointment time slot. 
+3. We must have the ability for a user to update or cancel their appointment. 
+Deliverable 
+Again we would like to take this moment to remind you that this system is bigger than you can possibly design and write in two hours and we do not expect you to. What we do expect is you to have a comprehensive vision of how you want it to work as well as the first pass at an implementation of endpoints to do the three required actions listed 
+above. Since we do not want you to waste your time setting up new projects or booting up databases we do not care if this actually is live demo-able, we simply want to see the code for the API endpoints and models. 
+You are welcome to make any assumptions about what already exists within Found’s systems that are reasonable. For instance, you can assume there is a model existing in our system called Customer which contains a field which gives you the State that customer lives in which you can use directly. Or, if it were useful to your design, you can assume there is an API that exists that gives you the same. Make sure to denote where you’ve made these assumptions. 
+At the end of two hours you will present your code by sharing your screen and walking us through it. 
+See you soon and have fun!
+
+Product Requirements:
+1. schedule time with doctor to be available
+2. retrieve list of available time slots for which user can choose and then schedule
+  - user state
+  - allowed doctor state
+  - only schedule given timeslow
+3. ability to update or cancel their timeslow
+
+USER FLOWS:
+Customer
+- register
+- login
+- view scheduling
+- select scheduling
+- update scheduling
+- cancel scheduling
+- notifications
+
+Doctor
+- register
+- login
+- add/edit licenses
+- add/edit scheduling
+- notifications
+
+
+DATA BASE:
+
+User (polymorphic)
+- id
+- customer_id?
+- type (enum)
+- Customer? (optional)
+- Doctor? (optional)
+- email
+- password (stored encrypted)
+- first name
+- last name
+- Address
+
+Address
+- id
+- zip
+- street
+- state
+
+Customer
+- id
+- Bookings[]
+
+Doctor
+- id
+- Licenses []
+- TimeSlots []
+- Bookings []
+
+License
+- id
+- state (enum)
+- Doctor
+- index on state (for quick search; will query in state doctors through license)
+
+Timeslot
+- id
+- start (DateTime)
+- end (DateTime)
+- reocurring (boolean)
+- Doctor
+- Bookings []
+
+Booking
+- id
+- status (enum)
+- Notifications[]
+- Customer
+- Timeslot
+- date (string?)
+- unique constraint on time_slot_id and date to prevent duplicate booking
+
+Notification
+- id
+- subject
+- body
+- to
+- from
+
+API:
+
+Auth 
+
+Bookings
+- get all
+- get 
+- post
+- patch
+
+Licences
+- get all
+- get
+- post 
+- patch
+
+Timeslots
+- get all
+- get
+- post 
+- patch
+- delete
+
+Ratings
+- get
+- post
+- pastch
+- delete
+
